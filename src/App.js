@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useRef } from 'react';
 import './App.css';
+import formSubmit from './formSubmit';
+import useTitleInput from './hooks/useTitleInput';
 
-function App() {
+const App = () => {
+
+  const [email, setEmail] = useTitleInput('teste@hotmail.com');
+
+  const area = useRef();
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    formSubmit(email, setEmail);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div ref={area}>      
+
+      <button onClick={() => {
+        area.current.classList.remove('maior');
+        area.current.classList.add('menor');
+      }}>Fonte Menor</button>     
+
+      <button onClick={() => {
+        area.current.classList.remove('menor');
+        area.current.classList.add('maior');
+      }}>Fonte Maior</button>
+
+      <hr/>
+
+      <h1>Bem Vindo(a)</h1>
+      <form onSubmit={handleFormSubmit}>
+      <label>Qual seu E-mail?</label>
+      <input
+        id="email"
+        type="email" 
+        value={email} 
+        onChange={(e) => setEmail(e.target.value)}       
+      />
+      <input type="submit" value="Enviar" />
+      </form>
+
+      
     </div>
   );
-}
+};
 
 export default App;
