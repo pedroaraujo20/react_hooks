@@ -9,9 +9,10 @@ label {
   font-size: 15px;
 }
 
-input[type=submit] {
+.submit, button {
   padding: 10px;
   font-size: 15px;
+  margin: 0 5px;
 }
 
 .maior {

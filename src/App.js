@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import './App.css';
 import formSubmit from './formSubmit';
 import useTitleInput from './hooks/useTitleInput';
+import Contador from './Contador';
+import AulaUseMemo from './aulaUseMemo';
 
 const App = () => {
 
@@ -15,7 +17,10 @@ const App = () => {
   }
 
   return (
-    <div ref={area}>      
+    <div ref={area}> 
+      <AulaUseMemo /> 
+
+      <hr/>    
 
       <button onClick={() => {
         area.current.classList.remove('maior');
@@ -38,8 +43,12 @@ const App = () => {
         value={email} 
         onChange={(e) => setEmail(e.target.value)}       
       />
-      <input type="submit" value="Enviar" />
+      <input className="submit" type="submit" value="Enviar" />
       </form>
+
+      <hr/>
+
+      <Contador />
 
       
     </div>
